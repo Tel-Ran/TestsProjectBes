@@ -241,8 +241,11 @@ public class Test {
 		jsnTest.put(JSONKeys.RESULTS_TEST_ID, id);
 		jsnTest.put(JSONKeys.RESULTS_TEST_NUM_QUESTIONS, amountOfQuestions);
 		jsnTest.put(JSONKeys.RESULTS_TEST_NUM_ANSWERS, numAnswers);
-		float result = this.amountOfCorrectAnswers / this.amountOfQuestions;
-		jsnTest.put(JSONKeys.RESULTS_TEST_TOTAL_RESULT, result);
+		float result = ((float)this.amountOfCorrectAnswers) / this.amountOfQuestions;
+		
+		System.out.println(result);
+		String res2 = Float.toString(result);
+		jsnTest.put(JSONKeys.RESULTS_TEST_TOTAL_RESULT, res2);
 		jsnTest.put(JSONKeys.RESULTS_TEST_MANUAL_CHECK_PENDING, !this.isChecked);		
 		jsn.put(JSONKeys.RESULTS_TEST_DATA, jsnTest);
 		

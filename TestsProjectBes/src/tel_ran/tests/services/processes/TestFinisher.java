@@ -83,6 +83,8 @@ public class TestFinisher implements ITestProcess {
 				catResult.setAnswerResult(res);
 				catResults.put(categoryId, catResult);
 			}
+			tQuestion.setStatus(res);
+			dao.saveAnswer(tQuestion);
 						
 		}	
 		
