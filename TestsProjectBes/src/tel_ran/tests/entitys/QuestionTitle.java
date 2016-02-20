@@ -1,13 +1,12 @@
 package tel_ran.tests.entitys;
 
 import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import tel_ran.tests.services.interfaces.IMaintenanceService;
 
 @Entity
 public class QuestionTitle implements Serializable {
@@ -39,6 +38,6 @@ public class QuestionTitle implements Serializable {
 	
 	@Override
 	public String toString() {
-		return id + IMaintenanceService.DELIMITER + questionTitle;
+		return id + "----" + questionTitle;// IMaintenanceService.DELIMITER = "----"
 	}
 }

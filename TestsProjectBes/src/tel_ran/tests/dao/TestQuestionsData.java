@@ -49,9 +49,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		return false;
 	}
 
-
-
-
 	@Override
 	public boolean isNoQuestions() {
 		Question q = em.find(Question.class, 1L);
@@ -60,10 +57,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		return false;
 	}
 
-	
-	
-	
-	
 	// ----------------------------------------------------------------------------------------------------------- //
 	
 	@Override
@@ -176,7 +169,7 @@ public class TestQuestionsData extends TestsPersistence implements
 		}
 		category.setCompany(company);
 		category.setControlName(company.getId());
-		System.out.println(category.getControlName());
+		System.out.println("cat control name- "+category.getControlName());
 		
 		return saveCategory(category);	
 		
@@ -199,19 +192,18 @@ public class TestQuestionsData extends TestsPersistence implements
 			return checkCategory;
 		} else {
 			em.persist(category);
-			System.out.println(category.getId());	
+			System.out.println("cat id- "+category.getId());	
 		}
 		return category;
 		
 	}
 
 
-
 	private Category findCategoryByControlName(String controlName) {
 		String query = "SELECT c FROM Category c WHERE c.controlName=?1";
 		List<Category> result = em.createQuery(query).setParameter(1, controlName).getResultList();
 		if(result==null || result.isEmpty()) {
-			System.out.println("No!");
+			System.out.println("No! findCategoryByControlName- ");
 			return null;
 		}
 		return result.get(0);
@@ -328,7 +320,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		
 		//5 - adding sort		
 		query.append(" ORDER BY c.id DESC");		
-		System.out.println(query.toString()); // ---------------------------------------- SYSO ---- !!!!!!!!!!!!!!!!!!!!!
 						
 		//6 - get result 
 		List<EntityQuestionAttributes> listOfEqa = em.createQuery(query.toString()).getResultList();
@@ -367,7 +358,6 @@ public class TestQuestionsData extends TestsPersistence implements
 			default:				
 		}
 		query.append(" ORDER BY cat.metaCategory");		
-		
 		return em.createQuery(query.toString()).getResultList();
 	}
 	
@@ -379,7 +369,7 @@ public class TestQuestionsData extends TestsPersistence implements
 		Person person;
 		String query = "Select p FROM Person p WHERE p.identify='" + personPassport + "'";
 		
-		System.out.println("I'm here + " + query);
+		System.out.println("createPerson + query- " + query);
 		
 		List<Person> result = em.createQuery(query).getResultList();
 		if(result!=null && !result.isEmpty()) {
@@ -463,7 +453,6 @@ public class TestQuestionsData extends TestsPersistence implements
 			Question eqa = em.find(Question.class, qId);
 			InTestQuestion etq = new InTestQuestion();
 			etq.setQuestion(eqa);
-//			etq.setEntityQuestionAttributes(eqa);
 			etq.setTest(test);
 			etq.setStatus(ICommonData.STATUS_NO_ANSWER);
 			em.persist(etq);
@@ -539,9 +528,7 @@ public class TestQuestionsData extends TestsPersistence implements
 			textQuery.append(getLimitsForCompanyQuery(companyId));
 		}
 		
-		textQuery.append(" ORDER BY c.").append(categoryType);
-			
-		System.out.println(textQuery.toString());
+		textQuery.append(" ORDER BY c.").append(categoryType);			
 		result = em.createQuery(textQuery.toString()).getResultList();		
 		
 		return result;
@@ -581,8 +568,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		}
 		
 	}
-
-	
 
 	@Override
 	public List<Question> getQuestionsByParams(TemplateCategory tCategory) {
@@ -637,7 +622,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		
 	}
 
-
 	@Override
 	public List<Question> getAmericanTestsByParams(Category category, int difficulty, Role role, int id,
 			boolean isAdmin) {
@@ -688,11 +672,7 @@ public class TestQuestionsData extends TestsPersistence implements
 		return result;
 		
 	}
-
-	
-	
-
-	
+		
 	@Override
 	public Question findQuestionById(Long id) {		
 		return (Question) em.find(Question.class, id);
@@ -730,8 +710,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		Hibernate.initialize(test.getInTestQuestions());
 		return test;
 	}
-
-
 	
 	//------------------------------------ INNER METHODS ------------------------------------------------//
 	private String getLimitsForCompanyQuery(int id) {	
@@ -747,7 +725,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		return (int)companyId;
 	}
 	
-
 	@Override
 	public List<TestTemplate> getTemplates(int id) {
 		
@@ -758,8 +735,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		
 		return templates;
 	}
-
-
 	
 	@Override
 	@Transactional
@@ -771,8 +746,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		
 		return template;
 	}
-
-	
 
 	@Override
 	@Transactional(readOnly=false)
@@ -815,9 +788,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		return result;
 	}
 
-
-
-
 	@Override
 	@Transactional(readOnly=false)
 	public void saveAnswer(InTestQuestion tQuestion) {
@@ -830,9 +800,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		em.merge(test);		
 	}
 
-
-
-
 	@Override
 	@Transactional
 	public Question initiateQuestionInTest(InTestQuestion tQuestion) {
@@ -842,9 +809,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		
 		return question;
 	}
-
-
-
 
 	@Override
 	@Transactional
@@ -860,9 +824,6 @@ public class TestQuestionsData extends TestsPersistence implements
 		return null;
 	}
 
-
-
-
 	@Override
 	@Transactional
 	public List<Test> getFinishedTestsForTemplate(TestTemplate template, long id, Role role) {
@@ -874,13 +835,5 @@ public class TestQuestionsData extends TestsPersistence implements
 				.setParameter(3, getCompanyId(role, id));
 				
 		return query.getResultList();
-	}
-
-
-
-
-
-
-
-	
+	}	
 }

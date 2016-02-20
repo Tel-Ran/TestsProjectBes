@@ -13,22 +13,9 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
   </servlet>
   
   <servlet-mapping>
-    <servlet-name>company_service</servlet-name>
-   <!-- <url-pattern>*.service1</url-pattern> -->
+    <servlet-name>company_service</servlet-name>  
      <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-    <servlet-name>maintenance_service</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet
-  </servlet-class>
-    <load-on-startup>3</load-on-startup>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>maintenance_service</servlet-name>
-    <url-pattern>*.service3</url-pattern>
-  </servlet-mapping>
-  
+  </servlet-mapping>  
   <servlet>
     <servlet-name>user_service</servlet-name>
     <servlet-class>org.springframework.web.servlet.DispatcherServlet
@@ -39,15 +26,4 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns
     <servlet-name>user_service</servlet-name>
     <url-pattern>*.service4</url-pattern>
   </servlet-mapping>  
-  
-  <!--  <listener>
-    <listener-class>
-        org.springframework.web.context.ContextLoaderListener
-    </listener-class>
-  </listener> 
-  <context-param>
-    <param-name>contextConfigLocation</param-name>
-    <param-value>/WEB-INF/beans.xml</param-value>
-  </context-param> -->
-  
-</web-app>
+ </web-app>
