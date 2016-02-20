@@ -81,9 +81,7 @@ public class TestService extends AbstractService {
 			
 			try {
 				long gotAnswer = this.saveAnswer(answer);
-				if(gotAnswer<0) {
-					System.out.println("NO ANSWER");
-				}
+			
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
